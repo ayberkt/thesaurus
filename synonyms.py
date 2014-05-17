@@ -4,7 +4,8 @@ import sys
 
 def get_synonyms(word):
     synsets = wn.synsets(word)
-    return [a_synset for a_synset in synsets]
+    return {syn.name.split('.')[0]: wn.synset(syn.name).lemma_names
+            for syn in synsets}
 
 if __name__ == '__main__':
 
