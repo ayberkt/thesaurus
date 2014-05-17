@@ -1,2 +1,4 @@
 nltk/*
 .ropeproject
+*.pyc
+__pycache__
