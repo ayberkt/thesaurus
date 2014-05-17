@@ -2,3 +2,4 @@ nltk/*
 .ropeproject
 *.pyc
 __pycache__
+nltk-venv
