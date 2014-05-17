@@ -2,7 +2,7 @@ from nltk.corpus import wordnet as wn
 import sys
 
 
-def get_synonyms(word):
+def synonyms(word):
     '''Returns a dict in the form of
     {'semantic identifier': ['syn1', 'syn2', ...]}'''
     synsets = wn.synsets(word)
@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     print('\nSynonyms for "{}"'.format(word.capitalize()))
 
-    synonym_dict = get_synonyms(word)
+    synonym_dict = synonyms(word)
     for semantic_group in synonym_dict:
         print('\nAs in {0}:\n'.format(semantic_group))
         print(', '.join(synonym_dict[semantic_group]))
