@@ -16,3 +16,27 @@ $ python
 >>> import nltk
 >>> nltk.download()
 ```
+
+## Using
+
+```
+$ python thesaurus.py good
+
+Synonyms for "Nice"
+
+Similar to "decent":
+
+=> decent, nice
+
+Similar to "dainty":
+
+=> dainty, nice, overnice, prissy, squeamish
+
+Similar to "courteous":
+
+=> courteous, gracious, nice
+
+Similar to "nice":
+
+=> nice, skillful
+```
