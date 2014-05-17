@@ -9,6 +9,18 @@ def synonyms(word):
     return {syn.name.split('.')[0]: wn.synset(syn.name).lemma_names
             for syn in synsets}
 
+
+def antonyms(word):
+    antonyms = {}
+    for lemma in wn.lemmas(word):
+        if not lemma.name in antonyms:
+            antonyms[lemma.name.lower()] = list(set([ant.name for ant in
+                                                    lemma.antonyms() if ant]))
+        else:
+            antonyms[lemma.name.lower()].update([ant.name for ant
+                                                 in lemma.antonyms()])
+    return antonyms
+
 if __name__ == '__main__':
 
     # If run with arg use the arg, otherwise prompt for word input.
