@@ -13,9 +13,11 @@ def synonyms(word):
 
 def antonyms(word):
     '''Return list of antonyms.'''
-    return [item for sub in
-            [[antonym.name for antonym in lemma.antonyms() if antonym]
-            for lemma in wn.lemmas(word) if lemma.antonyms()] for item in sub]
+    return list(set([item for sub in
+                    [[antonym.name for antonym
+                      in lemma.antonyms() if antonym]
+                    for lemma in wn.lemmas(word)
+                    if lemma.antonyms()] for item in sub]))
 
 
 def derivatives(word):
@@ -54,5 +56,5 @@ if __name__ == '__main__':
         print('\nSynonyms for "{}"'.format(word.capitalize()))
         synonym_dict = synonyms(word)
         for meaning_category in synonym_dict:
-            print('\nAs in {0}:\n'.format(meaning_category))
+            print('\nSimilar to "{0}":\n'.format(meaning_category))
             print('=> ' + ', '.join(synonym_dict[meaning_category]))
