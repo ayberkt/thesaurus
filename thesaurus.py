@@ -5,22 +5,17 @@ import argparse
 
 def synonyms(word):
     '''Returns a dict in the form of
-    {'semantic identifier': ['syn1', 'syn2', ...]}'''
+    {'category': ['syn1', 'syn2', ...]}'''
     synsets = wn.synsets(word)
     return {syn.name.split('.')[0]: wn.synset(syn.name).lemma_names
             for syn in synsets}
 
 
 def antonyms(word):
-    antonyms = {}
-    for lemma in wn.lemmas(word):
-        if not lemma.name in antonyms:
-            antonyms[lemma.name.lower()] = set([ant.name for ant in
-                                                lemma.antonyms() if ant])
-        else:
-            antonyms[lemma.name.lower()].update([ant.name for ant
-                                                 in lemma.antonyms()])
-    return antonyms
+    '''Return list of antonyms.'''
+    return [item for sub in
+            [[antonym.name for antonym in lemma.antonyms() if antonym]
+            for lemma in wn.lemmas(word) if lemma.antonyms()] for item in sub]
 
 if __name__ == '__main__':
 
@@ -39,12 +34,10 @@ if __name__ == '__main__':
         # Display synonyms
         print('\nSynonyms for "{}"'.format(word.capitalize()))
         synonym_dict = synonyms(word)
-        for semantic_group in synonym_dict:
-            print('\nAs in {0}:\n'.format(semantic_group))
-            print(', '.join(synonym_dict[semantic_group]))
+        for meaning_category in synonym_dict:
+            print('\nAs in {0}:\n'.format(meaning_category))
+            print('=> ' + ', '.join(synonym_dict[meaning_category]))
     else:
         # Display antonyms
         print('\nAntonyms for "{0}"'.format(word.capitalize()))
-        antonym_dict = antonyms(word)
-        for key in antonym_dict:
-            print(', '.join(antonym_dict[key]))
+        print('=> ' + ', '.join(antonyms(word).capitalize()))
