@@ -20,16 +20,17 @@ def antonyms(word):
 
 def derivatives(word):
     '''Return a list of derivatives.'''
-    return [item for sub in
-            [[derivative.name for derivative
-              in lemma.derivationally_related_forms()]
-            for lemma in wn.lemmas(word)
-            if lemma.derivationally_related_forms()] for item in sub]
+    return list(set([item for sub in
+                    [[derivative.name for derivative
+                      in lemma.derivationally_related_forms()]
+                    for lemma in wn.lemmas(word)
+                    if lemma.derivationally_related_forms()] for item in sub]))
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', '--antonyms', action='store_true')
+    parser.add_argument('-d', '--derivatives', action='store_true')
     parser.add_argument('word')
     parsed_args = parser.parse_args()
     print(parsed_args)
@@ -39,14 +40,19 @@ if __name__ == '__main__':
     else:
         word = parsed_args.word
 
-    if not parsed_args.antonyms:
+    if parsed_args.antonyms:
+        # Display antonyms
+        print('\nAntonyms for "{0}"'.format(word.capitalize()))
+        print('=> ' + ', '.join(antonyms(word).capitalize()))
+    elif parsed_args.derivatives:
+        # Display derivatives
+        print('\nDerivationally-related\
+        forms for "{0}"'.format(word.capitalize()))
+        print('=> ' + ', '.join(derivatives(word)))
+    else:
         # Display synonyms
         print('\nSynonyms for "{}"'.format(word.capitalize()))
         synonym_dict = synonyms(word)
         for meaning_category in synonym_dict:
             print('\nAs in {0}:\n'.format(meaning_category))
             print('=> ' + ', '.join(synonym_dict[meaning_category]))
-    else:
-        # Display antonyms
-        print('\nAntonyms for "{0}"'.format(word.capitalize()))
-        print('=> ' + ', '.join(antonyms(word).capitalize()))
