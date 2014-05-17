@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
     if parsed_args.antonyms:
         # Display antonyms
-        print('\nAntonyms for "{0}"'.format(word.capitalize()))
+        print('\nAntonyms for "{0}"\n'.format(word.capitalize()))
         print('=> ' + ', '.join(antonyms(word)))
     elif parsed_args.derivatives:
         # Display derivatives
