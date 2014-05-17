@@ -35,7 +35,6 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--derivatives', action='store_true')
     parser.add_argument('word')
     parsed_args = parser.parse_args()
-    print(parsed_args)
     # If run with arg use the arg, otherwise prompt for word input.
     if len(sys.argv) < 2:
         word = raw_input('Please input a word to begin look-up: ')
