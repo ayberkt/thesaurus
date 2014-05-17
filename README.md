@@ -1,4 +1,4 @@
-Thesaurus.py
+Thesaurus
 ============
 
 Simple thesaurus from the command-line using [NLTK](https://github.com/nltk/nltk)'s WordNet interface.
@@ -39,4 +39,14 @@ Similar to "courteous":
 Similar to "nice":
 
 => nice, skillful
+```
+
+You can also get the antonyms for a word by adding a ```--antonyms``` arg.
+
+```
+$ python thesaurus.py --antonyms nice
+
+Antonyms for "Attractive"
+=> repulsive, unattractive
+
 ```
