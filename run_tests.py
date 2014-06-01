@@ -1,10 +1,18 @@
 import thesaurus as th
 import unittest
 
+
 class TestSynonyms(unittest.TestCase):
 
+    synoynms_of_nice = {'decent': ['decent', 'nice'],
+                        'dainty': ['dainty', 'nice', 'overnice',
+                                   'prissy', 'squeamish'],
+                        'courteous': ['courteous', 'gracious', 'nice'],
+                        'nice': ['nice', 'skillful']}
+
     def test_synonyms(self):
-        pass
+        self.assertEqual(th.synonyms('nice'), self.synoynms_of_nice)
+
 
 class TestAntonyms(unittest.TestCase):
 
