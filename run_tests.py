@@ -17,13 +17,16 @@ class TestSynonyms(unittest.TestCase):
 class TestAntonyms(unittest.TestCase):
 
     def test_antonyms(self):
-        pass
+        self.assertEqual(th.antonyms('evil'), ['good'])
 
 
 class TestRelatedForms(unittest.TestCase):
 
+    related_forms_for_apply = ['applicative', 'applicant', 'applicable',
+                               'application', 'applier', 'applicatory']
+
     def test_related_forms(self):
-        pass
+        self.assertEqual(th.derivatives('apply'), self.related_forms_for_apply)
 
 
 if __name__ == '__main__':
