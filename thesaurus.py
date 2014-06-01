@@ -13,20 +13,19 @@ def synonyms(word):
 
 def antonyms(word):
     '''Return list of antonyms.'''
-    return list(set([item for sub in
-                    [[antonym.name for antonym
-                      in lemma.antonyms() if antonym]
-                    for lemma in wn.lemmas(word)
-                    if lemma.antonyms()] for item in sub]))
+    antonyms = [[antonym.name for antonym in lemma.antonyms() if antonym]
+                for lemma in wn.lemmas(word) if lemma.antonyms()]
+    return list(set([item for sub in antonyms for item in sub]))
 
 
 def derivatives(word):
     '''Return a list of derivatives.'''
     return list(set([item for sub in
                     [[derivative.name for derivative
-                      in lemma.derivationally_related_forms()]
-                    for lemma in wn.lemmas(word)
-                    if lemma.derivationally_related_forms()] for item in sub]))
+                     in lemma.derivationally_related_forms()]
+                     for lemma in wn.lemmas(word)
+                     if lemma.derivationally_related_forms()]
+                     for item in sub]))
 
 if __name__ == '__main__':
 
